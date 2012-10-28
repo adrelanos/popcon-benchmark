@@ -1,7 +1,9 @@
 #!/bin/bash
 
-## encrypted with
-## gpg --armor --encrypt
+## manually: mkdir -p ~/test
+## manually: sudo "/usr/sbin/popularity-contest" nobody > ~/test/pop
+
+## manually encrypted with: gpg --armor --encrypt
 
 mkdir -p /tmp/ram
 sudo mount -t tmpfs -o size=512M tmpfs /tmp/ram/
