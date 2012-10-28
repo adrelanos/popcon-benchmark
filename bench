@@ -1,0 +1,35 @@
+#!/bin/bash
+
+## encrypted with
+## gpg --armor --encrypt
+
+mkdir -p /tmp/ram
+sudo mount -t tmpfs -o size=512M tmpfs /tmp/ram/
+
+mkdir -p ~/test
+chmod 700 ~/test
+
+gpg --homedir ~/test/ --fingerprint
+
+## manually: gpg --homedir ~/test/ --gen-key
+
+## manually: gpg --homedir ~/test/ --encrypt ~/test/pop
+
+cp ~/test/pop.gpg /tmp/ram/pop.gpg
+
+TIME_START="$(date +%s)"
+
+for i in {1..100..1}; do
+
+   #echo "$i"
+
+   gpg --homedir ~/test/ --decrypt --quiet --skip-verify /tmp/ram/pop.gpg > /tmp/ram/pop.decr
+
+done
+
+TIME_END="$(date +%s)"
+TIME_DIFF=$(echo "$TIME_END - $TIME_START" | bc)
+
+echo "TIME_DIFF: $TIME_DIFF"
+
+sudo umount /tmp/ram/
