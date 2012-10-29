@@ -3,7 +3,9 @@
 ## manually: mkdir -p ~/test
 ## manually: sudo "/usr/sbin/popularity-contest" nobody > ~/test/pop
 
-## manually encrypted with: gpg --armor --encrypt
+## manually: gpg --homedir ~/test/ --gen-key
+
+## manually encrypted with: gpg --armor --encrypt ~/test/pop
 
 mkdir -p /tmp/ram
 sudo mount -t tmpfs -o size=512M tmpfs /tmp/ram/
@@ -12,10 +14,6 @@ mkdir -p ~/test
 chmod 700 ~/test
 
 gpg --homedir ~/test/ --fingerprint
-
-## manually: gpg --homedir ~/test/ --gen-key
-
-## manually: gpg --homedir ~/test/ --encrypt ~/test/pop
 
 cp ~/test/pop.gpg /tmp/ram/pop.gpg
 
